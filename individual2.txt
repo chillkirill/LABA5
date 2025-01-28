@@ -1,0 +1,27 @@
+a = float(input("Enter the value of a: "))
+
+import math
+
+def solve_inequality(a):
+    solutions = []
+    
+    x_max = a  # x <= a
+    coeff_a = 1
+    coeff_b = -3
+    coeff_c = 4 - a
+    
+    discriminant = coeff_b**2 - 4 * coeff_a * coeff_c
+    
+    if discriminant < 0:
+        return "No solutions for the inequality."
+    
+    x1 = (-coeff_b - math.sqrt(discriminant)) / (2 * coeff_a)
+    x2 = (-coeff_b + math.sqrt(discriminant)) / (2 * coeff_a)
+    
+    solutions.append(max(min(x1, x2), -math.inf))
+    solutions.append(min(max(x1, x2), x_max))
+    
+    return f"x ∈ [{solutions[0]:.2f}, {solutions[1]:.2f}]"
+
+result = solve_inequality(a)
+print("Solution:", result)
